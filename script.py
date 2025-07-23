@@ -31,8 +31,20 @@ estimated_insurance_data.append(("Maria", maria_insurance_cost))
 estimated_insurance_data.append(("Rohan", rohan_insurance_cost))
 estimated_insurance_data.append(("Valentina", valentina_insurance_cost))
 
-
 print("Here is the estimated insurance cost data: " + str(estimated_insurance_data))
 
+# Calculate difference between estimated and actual costs
 insurance_cost_difference = []
 
+for actual, estimated in zip(insurance_data, estimated_insurance_data):
+    name_actual, actual_cost = actual
+    name_estimated, estimated_cost = estimated
+    
+    # Sanity check: names should match
+    if name_actual != name_estimated:
+        raise ValueError(f"Names do not match: {name_actual} vs {name_estimated}")
+    
+    difference = estimated_cost - actual_cost
+    insurance_cost_difference.append((name_actual, difference))
+
+print("Difference between estimated and actual insurance costs:", insurance_cost_difference)
